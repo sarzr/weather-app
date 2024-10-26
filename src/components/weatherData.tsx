@@ -21,21 +21,21 @@ export const WeatherData: React.FC<IWeatherResDto> = () => {
           {getWeaData?.weather && (
             <>
               <img src={weatherUrl} alt="weather icon" />
-              <h3 className="font-medium text-blue-700">
+              <h3 className="font-semibold text-lg text-teal-600">
                 {getWeaData?.weather?.[0].description}
               </h3>
             </>
           )}
 
-          <div className="flex gap-2 mt-5 items-end">
+          <div className="flex gap-2 mt-9 items-end">
             <h3 className="font-medium text-gray-800">Wind Speed:</h3>
-            <h3 className="font-medium text-blue-700 text-sm">
+            <h3 className="font-medium text-teal-600 text-sm">
               {getWeaData?.wind?.speed ? getWeaData?.wind?.speed : "Not Found"}
             </h3>
           </div>
           <div className="flex gap-2 mt-5 items-end">
             <h3 className="font-medium text-gray-800">Temperature:</h3>
-            <h3 className="font-medium text-blue-700 text-sm">
+            <h3 className="font-medium text-teal-600 text-sm">
               {getWeaData?.main?.temp
                 ? `${getWeaData?.main?.temp}F`
                 : "Not Found"}
@@ -43,7 +43,7 @@ export const WeatherData: React.FC<IWeatherResDto> = () => {
           </div>
           <div className="flex gap-2 mt-5 items-end">
             <h3 className="font-medium text-gray-800">Humidity:</h3>
-            <h3 className="font-medium text-blue-700 text-sm">
+            <h3 className="font-medium text-teal-600 text-sm">
               {getWeaData?.main?.humidity
                 ? `${getWeaData?.main?.humidity}%`
                 : "Not Found"}
@@ -51,7 +51,7 @@ export const WeatherData: React.FC<IWeatherResDto> = () => {
           </div>
           <div className="flex gap-2 mt-5 items-end">
             <h3 className="font-medium text-gray-800">Visibility:</h3>
-            <h3 className="font-medium text-blue-700 text-sm">
+            <h3 className="font-medium text-teal-600 text-sm">
               {getWeaData?.visibility
                 ? `${getWeaData?.visibility}m`
                 : "Not Found"}
