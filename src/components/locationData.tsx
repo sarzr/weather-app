@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { ILocationResDto } from "../types/location.type";
 import { Context } from "../pages/main";
+import { WeatherData } from "./weatherData";
 
 export const LocationData: React.FC<ILocationResDto> = () => {
-  const { getLocData } = useContext(Context);
+  const { getLocData, isLoading } = useContext(Context);
 
   const result = getLocData?.results?.[0];
 
@@ -12,10 +13,20 @@ export const LocationData: React.FC<ILocationResDto> = () => {
   const countryCode = result?.components.country_code;
   const flagUrl = `https://flagcdn.com/144x108/${countryCode?.toLowerCase()}.png`;
 
+  if (!isLoading && getLocData && !getLocData?.results?.length) {
+    console.log(isLoading);
+
+    return (
+      <div className="flex justify-center mt-10 font-medium">
+        No data available...
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="mt-10 flex justify-center gap-6 md:gap-10 items-center flex-col md:flex-row">
-        {getLocData?.results && (
+        {getLocData?.results && getLocData.results.length && (
           <div className="bg-gray-50 p-6 shadow-md rounded-xl lg:w-1/3 xl:w-[29%] mx-3 sm:mx-0">
             <h2 className="text-2xl font-medium text-gray-700">
               {result?.formatted}
@@ -88,6 +99,9 @@ export const LocationData: React.FC<ILocationResDto> = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="mt-10">
+        <WeatherData />
       </div>
     </>
   );
