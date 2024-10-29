@@ -9,6 +9,16 @@ export const LocationData: React.FC<ILocationResDto> = () => {
 
   const result = getLocData?.results?.[0];
 
+  if (!isLoading && getLocData) {
+    if (!result || !result.geometry) {
+      return (
+        <div className="flex justify-center mt-10 font-medium">
+          No data available...
+        </div>
+      );
+    }
+  }
+
   const regions = result?.annotations.UN_M49.regions;
 
   const countryCode = result?.components.country_code;
@@ -16,14 +26,6 @@ export const LocationData: React.FC<ILocationResDto> = () => {
 
   const lat = getLocData?.results?.[0].geometry.lat;
   const lng = getLocData?.results?.[0].geometry.lng;
-
-  if (!isLoading && getLocData && !getLocData?.results?.length) {
-    return (
-      <div className="flex justify-center mt-10 font-medium">
-        No data available...
-      </div>
-    );
-  }
 
   return (
     <>

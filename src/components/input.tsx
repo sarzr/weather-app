@@ -15,7 +15,7 @@ export const InputForm: React.FC = () => {
 
   React.useEffect(() => {
     locationSubmitHandler(debounceValue);
-  }, [locationSubmitHandler, debounceValue]);
+  }, [debounceValue]);
 
   return (
     <form className="max-w-md mx-auto w-full">

@@ -12,13 +12,15 @@ export type TContext = {
   getLocData: ILocationResDto | null;
   locationSubmitHandler: (value: string) => void;
   isLoading: boolean;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const Context = createContext<TContext>({
   getLocData: null,
   getWeaData: null,
   locationSubmitHandler: () => {},
-  isLoading: false
+  isLoading: false,
+  setLocation: () => {},
 });
 
 export const Main: React.FC = () => {
@@ -55,6 +57,7 @@ export const Main: React.FC = () => {
     retry: 1,
   });
 
+
   const locationSubmitHandler = (value: string) => {
     setLocation(value);
   };
@@ -70,6 +73,7 @@ export const Main: React.FC = () => {
         getLocData: getLocData.data || null,
         isLoading: getLocData.isLoading,
         locationSubmitHandler: locationSubmitHandler,
+        setLocation: setLocation,
       }}
     >
       <div className="bg-gray-200 min-h-screen pt-10 pb-10 flex flex-col">
